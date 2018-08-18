@@ -1,0 +1,7 @@
+1. Enum.into(smth, HashDict.new) ->
+    #HashDict<[pid2: {:mod2, :fun2, :arg2}, pid1: {:mod1, :fun1, :arg1}]>
+
+2. iex> HashDict.fetch(h, :pid2)
+    {:ok, {:mod2, :fun2, :arg2}}
+
+3. 
