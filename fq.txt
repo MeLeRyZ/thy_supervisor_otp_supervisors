@@ -4,4 +4,15 @@
 2. iex> HashDict.fetch(h, :pid2)
     {:ok, {:mod2, :fun2, :arg2}}
 
-3. 
+3. iex> {:ok, child_pid} = ThySupervisor.start_child(sup_pid, {ThyWorker, :start_link, []})
+Let’s see what links are present in the supervisor:
+    iex(3)> Process.info(sup_pid, :links)
+    {:links, [#PID<0.82.0>, #PID<0.86.0>]}
+Interesting—two processes are linked to the supervisor process. The first is obviously
+the child process you just spawned. What about the other one?
+    iex> self
+    #PID<0.82.0>
+A little thought should reveal that because the supervisor process is spawned and
+linked by the shell process, it has the shell’s pid in its link set.
+
+4. 
